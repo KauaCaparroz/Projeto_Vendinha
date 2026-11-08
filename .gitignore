@@ -1,0 +1,15 @@
+# Arquivos gerados pelo .NET
+bin/
+obj/
+
+# Configurações locais do Visual Studio
+.vs/
+
+# Arquivos temporários
+*.user
+*.suo
+
+# Banco SQLite local
+*.db
+*.db-shm
+*.db-wal

@@ -7,7 +7,7 @@ namespace Projeto_Vendinha.Data
     {
         public VendinhaContext(
             DbContextOptions<VendinhaContext> options)
-            : base(options)
+            : base(options)//VendinhaContext herda de DbContext, uma classe do Entity Framework Core que permite trabalhar com o banco de dados usando C#
         {
         }
 
