@@ -26,12 +26,20 @@ namespace Projeto_Vendinha.Controllers
         [HttpPost]// Indica que essa função recebe dados para cadastrar um cliente
         public IActionResult Cadastrar(Cliente cliente)// Função que recebe as informações do cliente
         {
+            // Remove os pontos e traços do CPF
+            cliente.CPF = cliente.CPF.Replace(".", "").Replace("-", "");
+
+            // Verifica se o CPF é válido
+            if (!ValidadorCPF.Validar(cliente.CPF))
+            {
+                return BadRequest("CPF inválido!");
+            }
 
             if (banco.Clientes.Any(c => c.CPF == cliente.CPF))
-                // Verifica se já existe um cliente com o mesmo CPF 
-                //c representa cada cliente da lista
-                //c.CPF é o CPF do cliente que está sendo verificado
-                //ANNY Verifica se já existe um CPF igual
+            // Verifica se já existe um cliente com o mesmo CPF 
+            //c representa cada cliente da lista
+            //c.CPF é o CPF do cliente que está sendo verificado
+            //ANNY Verifica se já existe um CPF igual
 
             {
                 return BadRequest("Esse CPF já está cadastrado!");// Se o CPF já existir, impede o cadastro

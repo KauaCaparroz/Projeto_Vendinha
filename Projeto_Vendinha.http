@@ -1,6 +1,16 @@
 @Projeto_Vendinha_HostAddress = http://localhost:5051
 
-GET {{Projeto_Vendinha_HostAddress}}/weatherforecast/
+### Listar clientes
+GET {{Projeto_Vendinha_HostAddress}}/api/clientes
 Accept: application/json
 
-###
+### Testar cadastro com CPF inválido
+POST {{Projeto_Vendinha_HostAddress}}/api/clientes
+Content-Type: application/json
+
+{
+  "nomeCompleto": "Cliente Teste",
+  "cpf":"52998224725",
+  "dataNascimento": "2000-05-10",
+  "email": "teste@exemplo.com"
+}
