@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Projeto_Vendinha.Data;
 using Projeto_Vendinha.Models;
 
@@ -26,6 +27,30 @@ namespace Projeto_Vendinha.Controllers
         [HttpPost]// Indica que essa função recebe dados para cadastrar um cliente
         public IActionResult Cadastrar(Cliente cliente)// Função que recebe as informações do cliente
         {
+            // Verifica se o nome completo foi informado
+            if (string.IsNullOrWhiteSpace(cliente.NomeCompleto))
+            {
+                return BadRequest("O nome completo é obrigatório!");
+            }
+
+            // Verifica se a data de nascimento é válida
+            if (cliente.DataNascimento == default ||
+                cliente.DataNascimento.Date > DateTime.Today)
+            {
+                return BadRequest("Data de nascimento inválida!");
+            }
+
+            // Verifica o email somente se ele foi informado
+            if (!string.IsNullOrWhiteSpace(cliente.Email))
+            {
+                if (!System.Net.Mail.MailAddress.TryCreate(cliente.Email, out var email) ||
+                    email.Address != cliente.Email ||
+                    !email.Host.Contains('.'))
+                {
+                    return BadRequest("Email inválido!");
+                }
+            }
+
             // Remove os pontos e traços do CPF
             cliente.CPF = cliente.CPF.Replace(".", "").Replace("-", "");
 

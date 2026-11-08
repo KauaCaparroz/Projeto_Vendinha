@@ -12,5 +12,5 @@ Content-Type: application/json
   "nomeCompleto": "Cliente Teste",
   "cpf":"52998224725",
   "dataNascimento": "2000-05-10",
-  "email": "teste@exemplo.com"
+  "email": "emailinvalido"
 }
